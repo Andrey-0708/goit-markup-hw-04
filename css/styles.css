@@ -33,6 +33,8 @@ a {
 /*----------------header--------------------*/
 .page-header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0 1px 6px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 2px 1px 0 rgba(46, 47, 66, 0.08);
 }
 .header-container {
   display: flex;
@@ -71,6 +73,7 @@ a {
 }
 
 .nav-link {
+  position: relative;
   display: block;
   padding: 24px 0;
   color: #2e2f42;
@@ -78,12 +81,33 @@ a {
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #404bbf;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.current::after {
+  opacity: 1;
 }
 
 .nav-link:hover,
 .nav-link:focus,
 .contacts-link:hover,
-.contacts-link:focus {
+.contacts-link:focus,
+.nav-link.current {
   color: #404bbf;
 }
 
@@ -99,12 +123,23 @@ a {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #434455;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /*----------------hero--------------------*/
 .hero {
   background-color: #2e2f42;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url(../images/people-office.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding-top: 188px;
   padding-bottom: 188px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 .hero-wrapper {
 }
@@ -166,6 +201,21 @@ a {
 .adventures-item {
   width: calc((100% - 72px) / 4);
 }
+
+.adventure-image {
+  width: 100%;
+  height: 112px;
+  border-radius: 4px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8e8f99;
+  background-color: #f4f4fd;
+}
+
+.adventure-image-item {
+}
 .adventure-subtittle {
   font-size: 20px;
   font-weight: 500;
@@ -173,6 +223,7 @@ a {
   letter-spacing: 0.02em;
   color: #2e2f42;
   margin-bottom: 8px;
+  margin-top: 8px;
 }
 .adventures-item-text {
   font-size: 16px;
@@ -207,6 +258,8 @@ a {
   background-color: #ffffff;
   width: calc((100% - 72px) / 4);
   border-radius: 0px 0px 4px 4px;
+  box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229,
+    0px 1px 6px 0px #2e2f4214;
 }
 .team-image {
   display: block;
@@ -235,7 +288,35 @@ a {
   text-align: center;
   color: #2e2f42;
 }
+/*----------------social ntw--------------------*/
 
+.social-networks {
+  display: flex;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 8px;
+  gap: 24px;
+}
+
+.social-networks-list {
+  width: 40px;
+  height: 40px;
+}
+.soc-link-icons {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #4d5ae5;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.social-networks:hover {
+  color: #404bbf;
+}
+.soc-icon {
+  fill: #f4f4fd;
+}
 /*----------------portfolio--------------------*/
 .portfolio {
   padding-top: 120px;
@@ -271,6 +352,20 @@ a {
 .portfolio-item {
   width: calc((100% - 48px) / 3);
 }
+
+.portfolio-item:hover .portfolio-cover-text {
+  transform: translateY(0);
+}
+
+.cashless:hover {
+  box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229,
+    0px 1px 6px 0px #2e2f4214;
+}
+.portfolio-cover-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
 .portfolio-subtittles {
   font-size: 20px;
   font-weight: 500;
@@ -285,6 +380,20 @@ a {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #434455;
+}
+.portfolio-cover-text {
+  color: #f4f4fd;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4d5ae5;
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.02em;
 }
 /*----------------footer--------------------*/
 .page-footer {
@@ -305,4 +414,20 @@ a {
   letter-spacing: 0.02em;
   color: #f4f4fd;
   max-width: 264px;
+  margin-bottom: 16px;
+}
+.footer-container-two {
+  display: flex;
+}
+.social-networks-footer {
+  display: flex;
+  gap: 16px;
+}
+.social-media-footer-text {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
 }
